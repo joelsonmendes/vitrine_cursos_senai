@@ -67,15 +67,15 @@
 
     .app{
       width:100vw;height:100vh;
-      padding:26px;
+      padding:20px;
       position:relative;
       display:grid;
-      grid-template-rows:70px minmax(0,1fr) 96px;
-      gap:10px;
+      grid-template-rows:64px minmax(0,1fr) 88px;
+      gap:8px;
     }
 
     .frame{
-      position:absolute;inset:20px;z-index:100;
+      position:absolute;inset:16px;z-index:100;
       border:2px solid rgba(0,229,255,.5);
       border-radius:22px;
       pointer-events:none;
@@ -106,19 +106,19 @@
       position:absolute;background:var(--cyan);
       box-shadow:0 0 20px var(--cyan), 0 0 40px rgba(0,229,255,.5);
     }
-    .corner.tl{left:20px;top:20px}
+    .corner.tl{left:16px;top:16px}
     .corner.tl::before{width:36px;height:3px;left:0;top:0}
     .corner.tl::after{width:3px;height:36px;left:0;top:0}
 
-    .corner.tr{right:20px;top:20px}
+    .corner.tr{right:16px;top:16px}
     .corner.tr::before{width:36px;height:3px;right:0;top:0}
     .corner.tr::after{width:3px;height:36px;right:0;top:0}
 
-    .corner.bl{left:20px;bottom:20px}
+    .corner.bl{left:16px;bottom:16px}
     .corner.bl::before{width:36px;height:3px;left:0;bottom:0}
     .corner.bl::after{width:3px;height:36px;left:0;bottom:0}
 
-    .corner.br{right:20px;bottom:20px}
+    .corner.br{right:16px;bottom:16px}
     .corner.br::before{width:36px;height:3px;right:0;bottom:0}
     .corner.br::after{width:3px;height:36px;right:0;bottom:0}
 
@@ -127,10 +127,10 @@
       height:2px;background:var(--cyan);
       box-shadow:0 0 10px var(--cyan);
     }
-    .wire.top-left{left:20px;top:54px;width:120px;clip-path:polygon(0 0, 100% 0, 95% 100%, 0 100%)}
-    .wire.top-right{right:20px;top:54px;width:120px;clip-path:polygon(0 0, 100% 0, 100% 100%, 5% 100%)}
-    .wire.bottom-left{left:20px;bottom:112px;width:180px;clip-path:polygon(0 0, 100% 0, 95% 100%, 0 100%)}
-    .wire.bottom-right{right:20px;bottom:112px;width:180px;clip-path:polygon(0 0, 100% 0, 100% 100%, 5% 100%)}
+    .wire.top-left{left:16px;top:50px;width:120px;clip-path:polygon(0 0, 100% 0, 95% 100%, 0 100%)}
+    .wire.top-right{right:16px;top:50px;width:120px;clip-path:polygon(0 0, 100% 0, 100% 100%, 5% 100%)}
+    .wire.bottom-left{left:16px;bottom:104px;width:180px;clip-path:polygon(0 0, 100% 0, 95% 100%, 0 100%)}
+    .wire.bottom-right{right:16px;bottom:104px;width:180px;clip-path:polygon(0 0, 100% 0, 100% 100%, 5% 100%)}
 
     .data-dot{
       position:absolute;z-index:99;
@@ -139,10 +139,10 @@
       box-shadow:0 0 12px var(--cyan);
       pointer-events:none;
     }
-    .data-dot.a{left:142px;top:54px}
-    .data-dot.b{right:142px;top:54px}
-    .data-dot.c{left:202px;bottom:112px}
-    .data-dot.d{right:202px;bottom:112px}
+    .data-dot.a{left:138px;top:50px}
+    .data-dot.b{right:138px;top:50px}
+    .data-dot.c{left:198px;bottom:104px}
+    .data-dot.d{right:198px;bottom:104px}
 
     .scanline{
       position:absolute;inset:0;z-index:102;
@@ -152,9 +152,9 @@
     }
 
     .topbar{
-      height:70px;
+      height:64px;
       display:flex;align-items:center;justify-content:space-between;
-      padding:0 44px;
+      padding:0 50px;
       position:relative;z-index:90;
     }
 
@@ -204,18 +204,51 @@
       margin-top:3px;
     }
 
-    /* ═══════════ STAGE / CARROSSEL COM IMAGENS CONTIDAS ═══════════ */
+    /* Botão de tela inteira */
+    .fullscreen-btn{
+      position:absolute;
+      top:26px;
+      right:260px;
+      z-index:110;
+      width:44px;
+      height:44px;
+      border-radius:10px;
+      border:1px solid rgba(0,229,255,.5);
+      background:rgba(2,8,18,.8);
+      color:var(--cyan);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      box-shadow:0 0 20px rgba(0,229,255,.2);
+      transition:all .25s ease;
+    }
+    .fullscreen-btn:hover{
+      background:rgba(0,229,255,.2);
+      box-shadow:0 0 30px rgba(0,229,255,.5);
+      transform:scale(1.05);
+    }
+    .fullscreen-btn svg{
+      width:22px;
+      height:22px;
+      fill:none;
+      stroke:currentColor;
+      stroke-width:2;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    /* STAGE COM BANNERS MAIORES */
     .stage{
       position:relative;z-index:80;
       min-height:0;
-      padding:12px 24px;
+      padding:8px 16px;
       display:grid;place-items:center;
     }
 
     .slide{
       position:absolute;
-      width:min(88vw, 1120px);
-      height:min(86%, 92%);
+      width:min(96vw, 1340px);
+      height:min(94%, 96%);
       display:grid;place-items:center;
       opacity:0;transform:scale(.98);filter:blur(2px);
       transition:opacity .9s ease, transform .9s ease, filter .5s ease;
@@ -228,12 +261,12 @@
     .slide figure{
       width:100%;height:100%;
       border-radius:16px;
-      padding:8px;
-      background:linear-gradient(135deg, rgba(0,229,255,.18), rgba(0,102,255,.08), rgba(255,122,0,.1));
-      border:1px solid rgba(0,229,255,.45);
+      padding:5px;
+      background:linear-gradient(135deg, rgba(0,229,255,.22), rgba(0,102,255,.12), rgba(255,122,0,.14));
+      border:1px solid rgba(0,229,255,.55);
       box-shadow:
-        0 0 60px rgba(0,229,255,.18),
-        inset 0 0 20px rgba(0,229,255,.06);
+        0 0 80px rgba(0,229,255,.22),
+        inset 0 0 24px rgba(0,229,255,.08);
       display:grid;place-items:center;
       overflow:hidden;
     }
@@ -269,12 +302,12 @@
       box-shadow:0 0 45px rgba(0,229,255,.8);
       transform:translateY(-50%) scale(1.1);
     }
-    .prevBtn{left:42px}
-    .nextBtn{right:42px}
+    .prevBtn{left:38px}
+    .nextBtn{right:38px}
 
     .dots{
       position:absolute;
-      left:50%;bottom:112px;
+      left:50%;bottom:106px;
       transform:translateX(-50%);
       display:flex;gap:10px;
       padding:8px 18px;
@@ -306,7 +339,7 @@
 
     .progress-bar{
       position:absolute;
-      left:50%;bottom:104px;
+      left:50%;bottom:98px;
       transform:translateX(-50%);
       width:220px;height:3px;
       background:rgba(255,255,255,.06);
@@ -324,7 +357,7 @@
 
     .hex-row{
       position:absolute;
-      left:50%;bottom:118px;
+      left:50%;bottom:112px;
       transform:translateX(-50%);
       display:flex;gap:10px;
       z-index:95;
@@ -346,16 +379,16 @@
     }
 
     .footer{
-      height:96px;
+      height:88px;
       display:grid;grid-template-columns:repeat(5,1fr);
       gap:12px;
-      padding:0 34px;
+      padding:0 30px;
       position:relative;z-index:90;
       align-items:center;
     }
     .pillar{
       position:relative;
-      height:78px;
+      height:72px;
       border:1px solid rgba(0,229,255,.42);
       border-radius:10px;
       background:linear-gradient(180deg, rgba(6,26,54,.92), rgba(2,10,24,.95));
@@ -412,11 +445,38 @@
       letter-spacing:.5px;
     }
 
+    /* ═══════════════ RESPONSIVIDADE PARA TV/NOTEBOOK ═══════════════ */
+    @media(min-width:1600px){
+      .app{padding:24px;grid-template-rows:72px minmax(0,1fr) 96px;gap:10px}
+      .frame{inset:20px}
+      .topbar{padding:0 58px}
+      .brand-right .logo-big{font-size:2.1rem}
+      .brand-left{font-size:1.12rem}
+      .stage{padding:10px 22px}
+      .slide{width:min(96vw, 1520px)}
+      .slide figure{padding:6px}
+      .nav{width:62px;height:62px;font-size:38px}
+      .prevBtn{left:48px}.nextBtn{right:48px}
+      .footer{height:96px;padding:0 38px}
+      .pillar{height:78px}
+      .pillar b{font-size:1rem}
+      .pillar span{font-size:.68rem}
+      .fullscreen-btn{right:290px;width:48px;height:48px}
+    }
+
+    @media(min-width:2200px){
+      .slide{width:min(96vw, 1800px)}
+      .slide figure{padding:8px}
+      .brand-right .logo-big{font-size:2.4rem}
+    }
+
     @media(max-width:1100px){
       .pillar b{font-size:.78rem}
       .pillar span{font-size:.55rem}
-      .slide{width:min(92vw, 900px)}
+      .slide{width:min(96vw, 1100px)}
+      .fullscreen-btn{right:220px;width:40px;height:40px}
     }
+
     @media(max-width:900px){
       .app{padding:12px;grid-template-rows:58px minmax(0,1fr) 66px;gap:6px}
       .frame{inset:12px;border-radius:14px}
@@ -432,15 +492,17 @@
       .brand-right{padding:4px 10px}
       .brand-right .logo-big{font-size:1.15rem}
       .brand-right .sub{font-size:.5rem}
-      .stage{padding:8px 12px}
-      .slide{width:min(94vw, 92%);height:min(88%, 92%)}
-      .slide figure{padding:5px}
+      .fullscreen-btn{top:18px;right:150px;width:36px;height:36px}
+      .fullscreen-btn svg{width:18px;height:18px}
+      .stage{padding:6px 10px}
+      .slide{width:min(98vw, 98%);height:min(96%, 98%)}
+      .slide figure{padding:4px}
       .nav{width:36px;height:36px;font-size:22px}
-      .prevBtn{left:18px}.nextBtn{right:18px}
-      .dots{bottom:82px;gap:6px;padding:5px 10px}
+      .prevBtn{left:14px}.nextBtn{right:14px}
+      .dots{bottom:78px;gap:6px;padding:5px 10px}
       .dot{width:8px;height:8px}
       .dot.active{width:20px}
-      .progress-bar{bottom:76px;width:140px}
+      .progress-bar{bottom:72px;width:140px}
       .hex-row{display:none}
       .footer{height:66px;padding:0 10px;gap:4px}
       .pillar{height:50px;gap:4px}
@@ -450,12 +512,30 @@
       .pillar b{font-size:.48rem}
       .pillar span{display:none}
     }
+
     @media(max-width:500px){
       .brand-right .logo-big{font-size:.9rem}
       .pillar .icon{width:22px;height:22px}
       .pillar .ico-line{width:13px;height:13px}
       .pillar b{font-size:.38rem}
       .brand-left .senai,.brand-left .hub{font-size:.7rem}
+      .fullscreen-btn{top:14px;right:120px;width:32px;height:32px}
+    }
+
+    /* Telas pequenas em landscape (smartphone deitado) */
+    @media(max-height:500px) and (orientation:landscape){
+      .app{grid-template-rows:48px minmax(0,1fr) 44px}
+      .topbar{height:48px}
+      .brand-right .logo-big{font-size:1rem}
+      .brand-left .tagline{display:none}
+      .brand-left .sep{display:none}
+      .fullscreen-btn{display:none}
+      .footer{height:44px}
+      .pillar .icon{display:none}
+      .pillar b{font-size:.42rem}
+      .dots{display:none}
+      .progress-bar{bottom:50px}
+      .slide figure{padding:3px}
     }
   </style>
 </head>
@@ -480,6 +560,15 @@
   <div class="data-dot c"></div>
   <div class="data-dot d"></div>
   <div class="scanline"></div>
+
+  <button class="fullscreen-btn" id="fullscreenBtn" aria-label="Tela cheia">
+    <svg id="iconEnter" viewBox="0 0 24 24">
+      <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+    </svg>
+    <svg id="iconExit" viewBox="0 0 24 24" style="display:none">
+      <path d="M8 21H5a2 2 0 0 1-2-2v-3m18 0v3a2 2 0 0 1-2 2h-3m0-18h3a2 2 0 0 1 2 2v3M3 8V5a2 2 0 0 1 2-2h3"/>
+    </svg>
+  </button>
 
   <main class="app">
     <header class="topbar">
@@ -586,6 +675,9 @@
     const prevBtn = document.querySelector('.prevBtn');
     const nextBtn = document.querySelector('.nextBtn');
     const progressFill = document.querySelector('.progress-fill');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const iconEnter = document.getElementById('iconEnter');
+    const iconExit = document.getElementById('iconExit');
     let current = 0;
     let timer;
 
@@ -629,6 +721,28 @@
       if(e.key === 'ArrowLeft') prev();
       if(e.key === 'ArrowRight') next();
     });
+
+    // Fullscreen
+    function toggleFullscreen(){
+      if(!document.fullscreenElement){
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function updateFullscreenIcon(){
+      if(document.fullscreenElement){
+        iconEnter.style.display = 'none';
+        iconExit.style.display = 'block';
+      } else {
+        iconEnter.style.display = 'block';
+        iconExit.style.display = 'none';
+      }
+    }
+
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+    document.addEventListener('fullscreenchange', updateFullscreenIcon);
 
     restart();
   </script>
