@@ -3,37 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SENAI Hub | Inovação e Tecnologia</title>
+  <title>SENAI Hub | Vitrine Tecnológica</title>
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    :root{--cyan:#00e7ff;--blue:#006dff;--orange:#ff6a00;--dark:#020817;--panel:#061426}
-    body{min-height:100vh;background:#020817;font-family:Arial,Helvetica,sans-serif;color:#fff;overflow:hidden}
-    .vitrine{position:relative;width:100vw;height:100vh;padding:18px 24px;background:radial-gradient(circle at 15% 15%,rgba(0,229,255,.28),transparent 24%),radial-gradient(circle at 85% 18%,rgba(0,85,255,.30),transparent 28%),radial-gradient(circle at 85% 88%,rgba(255,106,0,.14),transparent 30%),linear-gradient(135deg,#01040d 0%,#06152f 48%,#020817 100%);overflow:hidden}
-    .vitrine::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(0,231,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,231,255,.07) 1px,transparent 1px);background-size:54px 54px;opacity:.45;animation:grid 22s linear infinite}.vitrine::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 0 45%,rgba(0,231,255,.12) 50%,transparent 55%);animation:shine 6s linear infinite;pointer-events:none}@keyframes grid{to{transform:translateY(54px)}}@keyframes shine{from{transform:translateX(-120%)}to{transform:translateX(120%)}}
-    .top{position:relative;z-index:5;height:86px;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(0,231,255,.28);border-bottom:none;border-radius:22px 22px 0 0;padding:14px 28px;background:linear-gradient(90deg,rgba(1,10,25,.75),rgba(5,20,50,.35));box-shadow:0 0 34px rgba(0,231,255,.20)}
-    .brand-title{font-weight:800;letter-spacing:5px;text-transform:uppercase;color:#9cf8ff;font-size:clamp(.8rem,1.6vw,1.15rem)}.brand-title b{color:var(--cyan)}
-    .logo-box{height:68px;min-width:265px;padding:8px 16px;border:1px solid rgba(0,231,255,.65);border-radius:14px;background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(230,250,255,.90));box-shadow:0 0 28px rgba(0,231,255,.52),inset 0 0 18px rgba(0,109,255,.18);clip-path:polygon(8% 0,100% 0,92% 100%,0 100%,0 22%)}.logo-box img{width:100%;height:100%;object-fit:contain;display:block}
-    .stage{position:relative;z-index:3;height:calc(100vh - 178px);border:2px solid rgba(0,231,255,.55);border-radius:0 0 24px 24px;background:linear-gradient(135deg,rgba(2,8,23,.80),rgba(5,25,55,.54));box-shadow:0 0 32px rgba(0,231,255,.32),inset 0 0 52px rgba(0,109,255,.23);overflow:hidden}.stage::before{content:"";position:absolute;inset:18px;border:1px solid rgba(0,231,255,.35);border-radius:20px;pointer-events:none;box-shadow:inset 0 0 24px rgba(0,231,255,.18)}
-    .slide{position:absolute;inset:0;opacity:0;transform:scale(1.02);transition:opacity 1s ease,transform 4.5s ease}.slide.active{opacity:1;transform:scale(1);z-index:2}.slide img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.05) saturate(1.12) brightness(.95)}
-    .slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,8,23,.12),transparent 38%,rgba(2,8,23,.08)),linear-gradient(0deg,rgba(2,8,23,.26),transparent 26%,rgba(2,8,23,.18));pointer-events:none}.corner{position:absolute;z-index:6;width:110px;height:110px;border-color:var(--cyan);opacity:.95}.c1{top:14px;left:14px;border-top:4px solid;border-left:4px solid;border-radius:18px 0 0 0}.c2{top:14px;right:14px;border-top:4px solid;border-right:4px solid;border-radius:0 18px 0 0}.c3{bottom:14px;left:14px;border-bottom:4px solid;border-left:4px solid;border-radius:0 0 0 18px}.c4{bottom:14px;right:14px;border-bottom:4px solid;border-right:4px solid;border-radius:0 0 18px 0}
-    .nav{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:58px;height:58px;border-radius:50%;border:1px solid rgba(0,231,255,.72);background:rgba(1,13,31,.78);color:#fff;font-size:38px;cursor:pointer;box-shadow:0 0 24px rgba(0,231,255,.42);display:grid;place-items:center}.nav:hover{background:rgba(0,231,255,.18)}.prevBtn{left:22px}.nextBtn{right:22px}
-    .dots{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:10;display:flex;gap:13px;padding:10px 18px;border:1px solid rgba(0,231,255,.28);border-radius:30px;background:rgba(2,8,23,.45);backdrop-filter:blur(6px)}.dot{width:12px;height:12px;border-radius:50%;border:1px solid var(--cyan);background:transparent;box-shadow:0 0 10px rgba(0,231,255,.45)}.dot.active{background:var(--cyan);box-shadow:0 0 18px var(--cyan)}
-    .bottom{position:relative;z-index:5;margin-top:14px;height:62px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.info{display:flex;align-items:center;justify-content:center;gap:12px;border:1px solid rgba(0,231,255,.28);border-radius:14px;background:linear-gradient(135deg,rgba(2,8,23,.76),rgba(0,47,91,.38));box-shadow:0 0 22px rgba(0,231,255,.14);text-transform:uppercase;letter-spacing:1.4px;font-size:.88rem}.info span{font-size:1.5rem;color:var(--cyan)}.info strong{display:block;color:#fff}.info small{display:block;color:#b7efff;margin-top:2px}
-    .progress{position:absolute;left:0;bottom:0;height:5px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--orange));z-index:20;width:0%;animation:progress 5.5s linear infinite}@keyframes progress{from{width:0}to{width:100%}}
-    @media(max-width:900px){.vitrine{padding:10px}.top{height:74px;padding:10px 14px}.brand-title{letter-spacing:2px;font-size:.75rem}.logo-box{min-width:150px;height:50px}.stage{height:calc(100vh - 150px)}.slide img{object-fit:contain;background:#020817}.bottom{display:none}.nav{width:46px;height:46px;font-size:30px}.dots{bottom:12px;gap:8px}.dot{width:9px;height:9px}}
+    :root{
+      --cyan:#00e5ff; --blue:#006eff; --orange:#ff7a00; --dark:#020817; --panel:#061426;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;height:100%;overflow:hidden;background:#020817;font-family:Arial,Helvetica,sans-serif;color:#fff}
+    body::before{content:"";position:fixed;inset:0;background:
+      radial-gradient(circle at 15% 20%,rgba(0,229,255,.20),transparent 34%),
+      radial-gradient(circle at 85% 22%,rgba(0,110,255,.22),transparent 35%),
+      radial-gradient(circle at 93% 91%,rgba(255,122,0,.18),transparent 25%),
+      linear-gradient(135deg,#020817 0%,#071a35 45%,#020817 100%);z-index:-3}
+    body::after{content:"";position:fixed;inset:0;background-image:
+      linear-gradient(rgba(0,229,255,.055) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(0,229,255,.055) 1px,transparent 1px);background-size:42px 42px;opacity:.7;z-index:-2;animation:grid 18s linear infinite}
+    @keyframes grid{to{transform:translateY(42px)}}
+
+    .app{width:100vw;height:100vh;padding:16px;display:grid;grid-template-rows:74px minmax(0,1fr)72px;gap:10px;position:relative}
+    .app::before{content:"";position:absolute;inset:6px;border:1px solid rgba(0,229,255,.55);border-radius:18px;box-shadow:inset 0 0 28px rgba(0,229,255,.12),0 0 24px rgba(0,110,255,.20);pointer-events:none}
+
+    .topbar{height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;border:1px solid rgba(0,229,255,.45);border-radius:18px;background:linear-gradient(90deg,rgba(3,14,32,.92),rgba(4,23,49,.82));box-shadow:0 0 24px rgba(0,229,255,.18);position:relative;z-index:5;overflow:hidden}
+    .topbar::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;background:linear-gradient(90deg,var(--cyan),transparent,var(--orange));opacity:.9}
+    .brandline{display:flex;align-items:center;gap:20px;text-transform:uppercase;letter-spacing:6px;font-weight:800;font-size:clamp(.7rem,1vw,1rem);color:#e8fbff;white-space:nowrap}
+    .brandline strong{color:var(--cyan);text-shadow:0 0 16px rgba(0,229,255,.8)}
+    .logoBox{height:52px;min-width:220px;padding:7px 18px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(255,255,255,.98),rgba(220,246,255,.90));border:1px solid rgba(0,229,255,.75);box-shadow:0 0 22px rgba(0,229,255,.45);clip-path:polygon(8% 0,100% 0,92% 100%,0 100%)}
+    .logoBox img{max-height:38px;max-width:180px;object-fit:contain;display:block}
+
+    .stage{min-height:0;position:relative;border:1px solid rgba(0,229,255,.48);border-radius:18px;background:rgba(0,8,22,.62);box-shadow:inset 0 0 34px rgba(0,229,255,.12),0 0 32px rgba(0,110,255,.20);overflow:hidden;padding:14px 62px 34px}
+    .stage::before,.stage::after{content:"";position:absolute;width:88px;height:88px;border-color:rgba(255,255,255,.92);pointer-events:none}
+    .stage::before{left:8px;top:8px;border-left:2px solid;border-top:2px solid;border-radius:10px 0 0 0}
+    .stage::after{right:8px;bottom:8px;border-right:2px solid;border-bottom:2px solid;border-radius:0 0 10px 0}
+
+    .slide{position:absolute;inset:14px 62px 34px;display:grid;place-items:center;opacity:0;transform:scale(.985);transition:opacity .85s ease,transform .85s ease;z-index:0}
+    .slide.active{opacity:1;transform:scale(1);z-index:2}
+    .slide img{width:100%;height:100%;object-fit:contain;display:block;border-radius:12px;filter:saturate(1.08) contrast(1.05);box-shadow:0 0 36px rgba(0,229,255,.22)}
+    .slide.active img{animation:kenburns 7s ease-in-out infinite alternate}
+    @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.012)}}
+
+    .nav{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:46px;height:46px;border-radius:50%;border:1px solid rgba(0,229,255,.8);background:rgba(2,8,23,.72);color:white;font-size:34px;line-height:40px;display:grid;place-items:center;cursor:pointer;box-shadow:0 0 18px rgba(0,229,255,.55)}
+    .nav:hover{background:rgba(0,229,255,.18)}
+    .prevBtn{left:18px}.nextBtn{right:18px}
+
+    .dots{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);display:flex;gap:9px;padding:8px 14px;border:1px solid rgba(0,229,255,.38);border-radius:999px;background:rgba(1,12,27,.68);z-index:12;box-shadow:0 0 16px rgba(0,229,255,.25)}
+    .dot{width:10px;height:10px;border-radius:50%;border:1px solid var(--cyan);background:transparent;opacity:.85}
+    .dot.active{background:var(--cyan);box-shadow:0 0 16px var(--cyan)}
+    .progress{position:absolute;left:0;bottom:0;height:4px;width:0;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--orange));z-index:15;box-shadow:0 0 16px var(--cyan);animation:progress 6s linear infinite}
+    @keyframes progress{from{width:0}to{width:100%}}
+
+    .footer{height:72px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;position:relative;z-index:4}
+    .pill{border:1px solid rgba(0,229,255,.45);border-radius:12px;background:linear-gradient(180deg,rgba(4,22,48,.90),rgba(2,12,30,.92));box-shadow:inset 0 0 20px rgba(0,229,255,.08),0 0 16px rgba(0,110,255,.16);display:flex;align-items:center;justify-content:center;gap:13px;text-transform:uppercase;letter-spacing:1.4px;min-width:0}
+    .pill .ico{font-size:24px;filter:drop-shadow(0 0 8px var(--cyan))}.pill b{display:block;font-size:clamp(.65rem,1vw,.92rem)}.pill span{display:block;font-size:clamp(.52rem,.8vw,.72rem);opacity:.85;margin-top:2px}
+
+    @media(max-width:900px){.app{padding:8px;grid-template-rows:58px minmax(0,1fr)58px}.topbar{height:58px;padding:0 12px}.brandline{letter-spacing:3px;font-size:.68rem}.brandline .hide{display:none}.logoBox{height:42px;min-width:140px;padding:6px 12px}.logoBox img{max-width:120px;max-height:30px}.stage{padding:10px 42px 32px}.slide{inset:10px 42px 32px}.nav{width:38px;height:38px;font-size:28px}.prevBtn{left:8px}.nextBtn{right:8px}.footer{grid-template-columns:repeat(5,1fr);gap:5px}.pill{gap:4px;letter-spacing:.4px}.pill .ico{font-size:16px}.pill b{font-size:.52rem}.pill span{display:none}}
   </style>
 </head>
 <body>
-  <main class="vitrine">
-    <header class="top">
-      <div class="brand-title"><b>SENAI HUB</b> &nbsp; Inovação e Tecnologia</div>
-      <div class="logo-box"><img src="assets/senai-hub-logo.png" alt="SENAI Hub"></div>
+  <main class="app">
+    <header class="topbar">
+      <div class="brandline"><strong>SENAI HUB</strong><span class="hide">Inovação e Tecnologia</span></div>
+      <div class="logoBox"><img src="assets/senai-hub-logo.png" alt="SENAI Hub"></div>
     </header>
 
-    <section class="stage" id="stage">
-      <div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
-      <button class="nav prevBtn" aria-label="Slide anterior">‹</button>
-      <button class="nav nextBtn" aria-label="Próximo slide">›</button>
+    <section class="stage" aria-label="Vitrine automática de cursos SENAI Hub">
+      <button class="nav prevBtn" aria-label="Anterior">‹</button>
+      <button class="nav nextBtn" aria-label="Próximo">›</button>
 
       <article class="slide active"><img src="assets/manutencao-eletrica.png" alt="Manutenção Elétrica"></article>
       <article class="slide"><img src="assets/acionamentos-eletricos.png" alt="Acionamentos Elétricos"></article>
@@ -47,58 +81,53 @@
       <article class="slide"><img src="assets/energias-renovaveis.png" alt="Energias Renováveis"></article>
       <article class="slide"><img src="assets/fotovoltaico.png" alt="Energia Fotovoltaica"></article>
 
-      <div class="dots" id="dots"></div>
-      <div class="progress" id="progress"></div>
+      <div class="dots" aria-hidden="true"></div>
+      <div class="progress"></div>
     </section>
 
-    <footer class="bottom">
-      <div class="info"><span>🧠</span><div><strong>Inovação</strong><small>que transforma</small></div></div>
-      <div class="info"><span>🌐</span><div><strong>Tecnologia</strong><small>que conecta</small></div></div>
-      <div class="info"><span>📈</span><div><strong>Educação</strong><small>que desenvolve</small></div></div>
-      <div class="info"><span>🛡</span><div><strong>Segurança</strong><small>que garante</small></div></div>
-      <div class="info"><span>🎯</span><div><strong>Futuro</strong><small>que construímos</small></div></div>
+    <footer class="footer">
+      <div class="pill"><div class="ico">🧠</div><div><b>Inovação</b><span>que transforma</span></div></div>
+      <div class="pill"><div class="ico">🌐</div><div><b>Tecnologia</b><span>que conecta</span></div></div>
+      <div class="pill"><div class="ico">📈</div><div><b>Educação</b><span>que desenvolve</span></div></div>
+      <div class="pill"><div class="ico">🛡</div><div><b>Segurança</b><span>que garante</span></div></div>
+      <div class="pill"><div class="ico">🎯</div><div><b>Futuro</b><span>que construímos</span></div></div>
     </footer>
   </main>
 
   <script>
     const slides = [...document.querySelectorAll('.slide')];
-    const dotsWrap = document.getElementById('dots');
-    const progress = document.getElementById('progress');
-    const nextBtn = document.querySelector('.nextBtn');
+    const dotsBox = document.querySelector('.dots');
     const prevBtn = document.querySelector('.prevBtn');
+    const nextBtn = document.querySelector('.nextBtn');
     let current = 0;
     let timer;
-    const delay = 5500;
 
     slides.forEach((_, i) => {
-      const dot = document.createElement('button');
+      const dot = document.createElement('span');
       dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('aria-label', 'Abrir slide ' + (i + 1));
-      dot.onclick = () => goTo(i);
-      dotsWrap.appendChild(dot);
+      dot.addEventListener('click', () => goTo(i));
+      dotsBox.appendChild(dot);
     });
+
     const dots = [...document.querySelectorAll('.dot')];
 
-    function resetProgress(){
-      progress.style.animation = 'none';
-      void progress.offsetWidth;
-      progress.style.animation = 'progress ' + (delay/1000) + 's linear infinite';
-    }
-    function goTo(index){
-      slides[current].classList.remove('active');
-      dots[current].classList.remove('active');
-      current = (index + slides.length) % slides.length;
+    function render(){
+      slides.forEach(s => s.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
       slides[current].classList.add('active');
       dots[current].classList.add('active');
-      resetProgress();
-      clearInterval(timer);
-      timer = setInterval(next, delay);
+      const progress = document.querySelector('.progress');
+      progress.style.animation = 'none';
+      void progress.offsetWidth;
+      progress.style.animation = 'progress 6s linear infinite';
     }
+    function goTo(i){current = (i + slides.length) % slides.length; render(); restart();}
     function next(){goTo(current + 1)}
     function prev(){goTo(current - 1)}
-    nextBtn.onclick = next;
-    prevBtn.onclick = prev;
-    timer = setInterval(next, delay);
+    function restart(){clearInterval(timer); timer = setInterval(next, 6000)}
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+    restart();
   </script>
 </body>
 </html>
