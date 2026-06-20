@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vitrine Tecnológica SENAI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="vitrine">
+    <section class="hero">
+      <div class="topbar">
+        <span class="tag">SENAI HUB</span>
+        <span class="status"><i></i> Vitrine automática</span>
+      </div>
+
+      <div class="carousel" aria-label="Carrossel de cursos SENAI">
+        <div class="slides" id="slides">
+          <article class="slide active">
+            <img src="assets/manutencao-eletrica.png" alt="Curso de Manutenção Elétrica SENAI" />
+          </article>
+          <article class="slide">
+            <img src="assets/acionamentos-eletricos.png" alt="Curso de Acionamentos Elétricos SENAI" />
+          </article>
+          <article class="slide">
+            <img src="assets/clp-siemens.png" alt="Curso de CLP Siemens SENAI" />
+          </article>
+          <article class="slide">
+            <img src="assets/ihm-siemens.png" alt="Curso de IHM Siemens SENAI" />
+          </article>
+          <article class="slide">
+            <img src="assets/comandos-eletricos.png" alt="Curso de Comandos Elétricos SENAI" />
+          </article>
+          <article class="slide">
+            <img src="assets/redes-industriais.png" alt="Curso de Redes Industriais SENAI" />
+          </article>
+        </div>
+
+        <button class="nav prev" id="prev" aria-label="Imagem anterior">‹</button>
+        <button class="nav next" id="next" aria-label="Próxima imagem">›</button>
+
+        <div class="progress"><span id="progressBar"></span></div>
+      </div>
+
+      <div class="dots" id="dots" aria-label="Indicadores do carrossel"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
