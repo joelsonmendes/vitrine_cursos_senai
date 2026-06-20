@@ -3,94 +3,560 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SENAI Hub | Vitrine Tecnológica</title>
+  <title>SENAI HUB | Vitrine Tecnológica</title>
   <style>
     :root{
-      --cyan:#00e5ff; --blue:#006eff; --orange:#ff7a00; --dark:#020817; --panel:#061426;
+      --cyan: #00e5ff;
+      --blue: #0066ff;
+      --orange: #ff7a00;
+      --dark: #02050c;
+      --panel: #071228;
     }
+
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{width:100%;height:100%;overflow:hidden;background:#020817;font-family:Arial,Helvetica,sans-serif;color:#fff}
-    body::before{content:"";position:fixed;inset:0;background:
-      radial-gradient(circle at 15% 20%,rgba(0,229,255,.20),transparent 34%),
-      radial-gradient(circle at 85% 22%,rgba(0,110,255,.22),transparent 35%),
-      radial-gradient(circle at 93% 91%,rgba(255,122,0,.18),transparent 25%),
-      linear-gradient(135deg,#020817 0%,#071a35 45%,#020817 100%);z-index:-3}
-    body::after{content:"";position:fixed;inset:0;background-image:
-      linear-gradient(rgba(0,229,255,.055) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(0,229,255,.055) 1px,transparent 1px);background-size:42px 42px;opacity:.7;z-index:-2;animation:grid 18s linear infinite}
-    @keyframes grid{to{transform:translateY(42px)}}
 
-    .app{width:100vw;height:100vh;padding:16px;display:grid;grid-template-rows:74px minmax(0,1fr)72px;gap:10px;position:relative}
-    .app::before{content:"";position:absolute;inset:6px;border:1px solid rgba(0,229,255,.55);border-radius:18px;box-shadow:inset 0 0 28px rgba(0,229,255,.12),0 0 24px rgba(0,110,255,.20);pointer-events:none}
+    html,body{
+      width:100%;height:100%;overflow:hidden;
+      background:var(--dark);
+      font-family:'Segoe UI', Roboto, Arial, sans-serif;
+      color:#fff;
+    }
 
-    .topbar{height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;border:1px solid rgba(0,229,255,.45);border-radius:18px;background:linear-gradient(90deg,rgba(3,14,32,.92),rgba(4,23,49,.82));box-shadow:0 0 24px rgba(0,229,255,.18);position:relative;z-index:5;overflow:hidden}
-    .topbar::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;background:linear-gradient(90deg,var(--cyan),transparent,var(--orange));opacity:.9}
-    .brandline{display:flex;align-items:center;gap:20px;text-transform:uppercase;letter-spacing:6px;font-weight:800;font-size:clamp(.7rem,1vw,1rem);color:#e8fbff;white-space:nowrap}
-    .brandline strong{color:var(--cyan);text-shadow:0 0 16px rgba(0,229,255,.8)}
-    .logoBox{height:52px;min-width:220px;padding:7px 18px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(255,255,255,.98),rgba(220,246,255,.90));border:1px solid rgba(0,229,255,.75);box-shadow:0 0 22px rgba(0,229,255,.45);clip-path:polygon(8% 0,100% 0,92% 100%,0 100%)}
-    .logoBox img{max-height:38px;max-width:180px;object-fit:contain;display:block}
+    /* Background */
+    body::before{
+      content:"";
+      position:fixed;inset:0;z-index:-5;
+      background:
+        radial-gradient(ellipse 60% 55% at 22% 38%, rgba(0,102,255,.24), transparent 45%),
+        radial-gradient(ellipse 50% 45% at 78% 68%, rgba(255,122,0,.16), transparent 35%),
+        radial-gradient(ellipse 45% 40% at 88% 18%, rgba(0,229,255,.10), transparent 40%),
+        linear-gradient(160deg, #02050c 0%, #0a1e3d 50%, #02050c 100%);
+    }
 
-    .stage{min-height:0;position:relative;border:1px solid rgba(0,229,255,.48);border-radius:18px;background:rgba(0,8,22,.62);box-shadow:inset 0 0 34px rgba(0,229,255,.12),0 0 32px rgba(0,110,255,.20);overflow:hidden;padding:14px 62px 34px}
-    .stage::before,.stage::after{content:"";position:absolute;width:88px;height:88px;border-color:rgba(255,255,255,.92);pointer-events:none}
-    .stage::before{left:8px;top:8px;border-left:2px solid;border-top:2px solid;border-radius:10px 0 0 0}
-    .stage::after{right:8px;bottom:8px;border-right:2px solid;border-bottom:2px solid;border-radius:0 0 10px 0}
+    /* Grid digital */
+    .grid{
+      position:fixed;inset:0;z-index:-4;
+      background-image:
+        linear-gradient(rgba(0,229,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,.06) 1px, transparent 1px);
+      background-size:64px 64px;
+      opacity:.45;
+      animation:gridMove 24s linear infinite;
+    }
+    @keyframes gridMove{to{transform:translateY(64px)}}
 
-    .slide{position:absolute;inset:14px 62px 34px;display:grid;place-items:center;opacity:0;transform:scale(.985);transition:opacity .85s ease,transform .85s ease;z-index:0}
-    .slide.active{opacity:1;transform:scale(1);z-index:2}
-    .slide img{width:100%;height:100%;object-fit:contain;display:block;border-radius:12px;filter:saturate(1.08) contrast(1.05);box-shadow:0 0 36px rgba(0,229,255,.22)}
-    .slide.active img{animation:kenburns 7s ease-in-out infinite alternate}
-    @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.012)}}
+    /* Circuitos de fundo */
+    .circuit-bg{
+      position:fixed;inset:0;z-index:-3;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cpath d='M20 20h50v50H20zM120 20h40v40h-40zM20 120h40v40H20zM120 120h50v50h-50z' fill='none' stroke='rgba(0,229,255,.06)' stroke-width='1'/%3E%3Ccircle cx='70' cy='70' r='3' fill='rgba(0,229,255,.18)'/%3E%3Ccircle cx='150' cy='150' r='3' fill='rgba(0,229,255,.18)'/%3E%3C/svg%3E");
+      background-size:180px 180px;
+      opacity:.5;
+      pointer-events:none;
+    }
 
-    .nav{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:46px;height:46px;border-radius:50%;border:1px solid rgba(0,229,255,.8);background:rgba(2,8,23,.72);color:white;font-size:34px;line-height:40px;display:grid;place-items:center;cursor:pointer;box-shadow:0 0 18px rgba(0,229,255,.55)}
-    .nav:hover{background:rgba(0,229,255,.18)}
-    .prevBtn{left:18px}.nextBtn{right:18px}
+    /* Hologramas */
+    .holo{
+      position:fixed;z-index:-2;border-radius:50%;
+      border:1px solid rgba(0,229,255,.12);
+      background:radial-gradient(circle, rgba(0,229,255,.05) 0%, transparent 70%);
+      animation:holoPulse 4s ease-in-out infinite;
+      pointer-events:none;
+    }
+    .holo.one{top:18%;left:6%;width:280px;height:280px}
+    .holo.two{bottom:22%;right:8%;width:260px;height:260px;animation-delay:2s}
+    @keyframes holoPulse{
+      0%,100%{transform:scale(1);opacity:.25}
+      50%{transform:scale(1.2);opacity:.55}
+    }
 
-    .dots{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);display:flex;gap:9px;padding:8px 14px;border:1px solid rgba(0,229,255,.38);border-radius:999px;background:rgba(1,12,27,.68);z-index:12;box-shadow:0 0 16px rgba(0,229,255,.25)}
-    .dot{width:10px;height:10px;border-radius:50%;border:1px solid var(--cyan);background:transparent;opacity:.85}
-    .dot.active{background:var(--cyan);box-shadow:0 0 16px var(--cyan)}
-    .progress{position:absolute;left:0;bottom:0;height:4px;width:0;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--orange));z-index:15;box-shadow:0 0 16px var(--cyan);animation:progress 6s linear infinite}
-    @keyframes progress{from{width:0}to{width:100%}}
+    /* App */
+    .app{
+      width:100vw;height:100vh;
+      padding:26px;
+      position:relative;
+      display:grid;
+      grid-template-rows:70px minmax(0,1fr) 96px;
+      gap:10px;
+    }
 
-    .footer{height:72px;display:grid;grid-template-columns:repeat(5,1fr);gap:10px;position:relative;z-index:4}
-    .pill{border:1px solid rgba(0,229,255,.45);border-radius:12px;background:linear-gradient(180deg,rgba(4,22,48,.90),rgba(2,12,30,.92));box-shadow:inset 0 0 20px rgba(0,229,255,.08),0 0 16px rgba(0,110,255,.16);display:flex;align-items:center;justify-content:center;gap:13px;text-transform:uppercase;letter-spacing:1.4px;min-width:0}
-    .pill .ico{font-size:24px;filter:drop-shadow(0 0 8px var(--cyan))}.pill b{display:block;font-size:clamp(.65rem,1vw,.92rem)}.pill span{display:block;font-size:clamp(.52rem,.8vw,.72rem);opacity:.85;margin-top:2px}
+    /* ═══════════════════ MOLDURA PRINCIPAL ═══════════════════ */
+    .frame{
+      position:absolute;inset:20px;z-index:100;
+      border:2px solid rgba(0,229,255,.5);
+      border-radius:22px;
+      pointer-events:none;
+      box-shadow:
+        inset 0 0 80px rgba(0,229,255,.12),
+        0 0 60px rgba(0,102,255,.2),
+        0 0 8px rgba(0,229,255,.08);
+      overflow:hidden;
+    }
+    .frame::before{
+      content:"";
+      position:absolute;inset:0;
+      border-radius:22px;
+      padding:2px;
+      background:linear-gradient(135deg, var(--cyan) 0%, transparent 22%, transparent 78%, var(--orange) 100%);
+      -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      pointer-events:none;
+    }
 
-    @media(max-width:900px){.app{padding:8px;grid-template-rows:58px minmax(0,1fr)58px}.topbar{height:58px;padding:0 12px}.brandline{letter-spacing:3px;font-size:.68rem}.brandline .hide{display:none}.logoBox{height:42px;min-width:140px;padding:6px 12px}.logoBox img{max-width:120px;max-height:30px}.stage{padding:10px 42px 32px}.slide{inset:10px 42px 32px}.nav{width:38px;height:38px;font-size:28px}.prevBtn{left:8px}.nextBtn{right:8px}.footer{grid-template-columns:repeat(5,1fr);gap:5px}.pill{gap:4px;letter-spacing:.4px}.pill .ico{font-size:16px}.pill b{font-size:.52rem}.pill span{display:none}}
+    /* Cantos */
+    .corner{
+      position:absolute;z-index:101;
+      width:70px;height:70px;pointer-events:none;
+    }
+    .corner::before, .corner::after{
+      content:"";
+      position:absolute;background:var(--cyan);
+      box-shadow:0 0 20px var(--cyan), 0 0 40px rgba(0,229,255,.5);
+    }
+    .corner.tl{left:20px;top:20px}
+    .corner.tl::before{width:36px;height:3px;left:0;top:0}
+    .corner.tl::after{width:3px;height:36px;left:0;top:0}
+
+    .corner.tr{right:20px;top:20px}
+    .corner.tr::before{width:36px;height:3px;right:0;top:0}
+    .corner.tr::after{width:3px;height:36px;right:0;top:0}
+
+    .corner.bl{left:20px;bottom:20px}
+    .corner.bl::before{width:36px;height:3px;left:0;bottom:0}
+    .corner.bl::after{width:3px;height:36px;left:0;bottom:0}
+
+    .corner.br{right:20px;bottom:20px}
+    .corner.br::before{width:36px;height:3px;right:0;bottom:0}
+    .corner.br::after{width:3px;height:36px;right:0;bottom:0}
+
+    /* Linhas de circuito */
+    .wire{
+      position:absolute;z-index:99;pointer-events:none;
+      height:2px;background:var(--cyan);
+      box-shadow:0 0 10px var(--cyan);
+    }
+    .wire.top-left{left:20px;top:54px;width:120px;clip-path:polygon(0 0, 100% 0, 95% 100%, 0 100%)}
+    .wire.top-right{right:20px;top:54px;width:120px;clip-path:polygon(0 0, 100% 0, 100% 100%, 5% 100%)}
+    .wire.bottom-left{left:20px;bottom:112px;width:180px;clip-path:polygon(0 0, 100% 0, 95% 100%, 0 100%)}
+    .wire.bottom-right{right:20px;bottom:112px;width:180px;clip-path:polygon(0 0, 100% 0, 100% 100%, 5% 100%)}
+
+    /* Pontos luminosos */
+    .data-dot{
+      position:absolute;z-index:99;
+      width:6px;height:6px;border-radius:50%;
+      background:var(--cyan);
+      box-shadow:0 0 12px var(--cyan);
+      pointer-events:none;
+    }
+    .data-dot.a{left:142px;top:54px}
+    .data-dot.b{right:142px;top:54px}
+    .data-dot.c{left:202px;bottom:112px}
+    .data-dot.d{right:202px;bottom:112px}
+
+    /* Scanline */
+    .scanline{
+      position:absolute;inset:0;z-index:102;
+      background:linear-gradient(180deg, transparent 50%, rgba(0,229,255,.025) 50%);
+      background-size:100% 4px;
+      pointer-events:none;opacity:.35;
+    }
+
+    /* ═══════════════════ TOPBAR ═══════════════════ */
+    .topbar{
+      height:70px;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 44px;
+      position:relative;z-index:90;
+    }
+
+    /* Logo secundária topo esquerdo */
+    .brand-left{
+      display:flex;align-items:center;gap:10px;
+      font-size:1rem;
+      font-weight:800;
+      letter-spacing:1.5px;
+      text-transform:uppercase;
+    }
+    .brand-left .senai{color:var(--cyan);text-shadow:0 0 20px rgba(0,229,255,.9)}
+    .brand-left .hub{color:var(--orange);text-shadow:0 0 20px rgba(255,122,0,.8)}
+    .brand-left .sep{
+      width:1px;height:22px;
+      background:linear-gradient(180deg, transparent, var(--cyan), transparent);
+      margin:0 4px;
+    }
+    .brand-left .tagline{
+      font-size:.68rem;
+      font-weight:500;
+      letter-spacing:3px;
+      color:#c8e6ff;
+    }
+
+    /* Logo principal topo direito */
+    .brand-right{
+      display:flex;flex-direction:column;align-items:flex-end;
+      padding:6px 18px;
+      background:rgba(2,8,18,.7);
+      border:1px solid rgba(0,229,255,.45);
+      border-radius:10px;
+      box-shadow:0 0 28px rgba(0,102,255,.2);
+      clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    }
+    .brand-right .logo-big{
+      font-size:1.8rem;
+      font-weight:900;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      line-height:1;
+    }
+    .brand-right .logo-big .senai{color:var(--blue);text-shadow:0 0 25px rgba(0,102,255,1)}
+    .brand-right .logo-big .hub{color:var(--orange);text-shadow:0 0 25px rgba(255,122,0,1)}
+    .brand-right .sub{
+      font-size:.62rem;
+      color:#a8d4ff;
+      letter-spacing:3px;
+      margin-top:3px;
+    }
+
+    /* ═══════════════════ STAGE / CARROSSEL ═══════════════════ */
+    .stage{
+      position:relative;z-index:80;
+      min-height:0;
+      margin:0 14px;
+      border-radius:16px;
+      overflow:hidden;
+    }
+
+    .slide{
+      position:absolute;inset:0;
+      display:grid;place-items:center;
+      opacity:0;transform:scale(.98);filter:blur(2px);
+      transition:opacity .9s ease, transform .9s ease, filter .5s ease;
+      z-index:0;
+    }
+    .slide.active{
+      opacity:1;transform:scale(1);filter:blur(0);z-index:2;
+    }
+    .slide img{
+      width:100%;height:100%;
+      object-fit:contain;display:block;
+      border-radius:16px;
+      filter:saturate(1.1) contrast(1.05);
+      box-shadow:0 0 50px rgba(0,229,255,.15);
+    }
+
+    /* Navegação */
+    .nav{
+      position:absolute;top:50%;transform:translateY(-50%);
+      z-index:110;
+      width:56px;height:56px;
+      border-radius:50%;
+      border:2px solid rgba(0,229,255,.75);
+      background:rgba(1,4,10,.78);
+      color:var(--cyan);
+      font-size:34px;
+      display:grid;place-items:center;
+      cursor:pointer;
+      box-shadow:0 0 30px rgba(0,229,255,.5);
+      transition:all .25s ease;
+    }
+    .nav:hover{
+      background:rgba(0,229,255,.22);
+      color:#fff;
+      box-shadow:0 0 45px rgba(0,229,255,.8);
+      transform:translateY(-50%) scale(1.1);
+    }
+    .prevBtn{left:36px}
+    .nextBtn{right:36px}
+
+    /* Dots de paginação */
+    .dots{
+      position:absolute;
+      left:50%;bottom:112px;
+      transform:translateX(-50%);
+      display:flex;gap:10px;
+      padding:8px 18px;
+      border:1px solid rgba(0,229,255,.35);
+      border-radius:999px;
+      background:rgba(1,4,10,.8);
+      z-index:110;
+      box-shadow:0 0 22px rgba(0,229,255,.2);
+    }
+    .dot{
+      width:10px;height:10px;
+      border-radius:50%;
+      border:1.5px solid rgba(0,229,255,.6);
+      background:transparent;
+      cursor:pointer;
+      transition:all .3s ease;
+    }
+    .dot:hover{
+      border-color:var(--orange);
+      box-shadow:0 0 10px var(--orange);
+    }
+    .dot.active{
+      background:var(--cyan);
+      border-color:var(--cyan);
+      box-shadow:0 0 18px var(--cyan);
+      width:26px;
+      border-radius:999px;
+    }
+
+    /* Barra de progresso */
+    .progress-bar{
+      position:absolute;
+      left:50%;bottom:104px;
+      transform:translateX(-50%);
+      width:220px;height:3px;
+      background:rgba(255,255,255,.06);
+      border-radius:3px;
+      z-index:110;
+      overflow:hidden;
+    }
+    .progress-fill{
+      height:100%;width:0%;
+      background:linear-gradient(90deg, var(--cyan), var(--blue), var(--orange));
+      box-shadow:0 0 14px var(--cyan);
+      animation:progress 6s linear infinite;
+    }
+    @keyframes progress{from{width:0%}to{width:100%}}
+
+    /* Hexágonos decorativos na base */
+    .hex-row{
+      position:absolute;
+      left:50%;bottom:118px;
+      transform:translateX(-50%);
+      display:flex;gap:10px;
+      z-index:95;
+      pointer-events:none;
+    }
+    .hex{
+      width:16px;height:18px;
+      background:rgba(0,229,255,.3);
+      clip-path:polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+      animation:hexPulse 2s ease-in-out infinite;
+    }
+    .hex:nth-child(2){animation-delay:.3s}
+    .hex:nth-child(3){animation-delay:.6s}
+    .hex:nth-child(4){animation-delay:.9s}
+    .hex:nth-child(5){animation-delay:1.2s}
+    @keyframes hexPulse{
+      0%,100%{opacity:.3;transform:scale(1)}
+      50%{opacity:.7;transform:scale(1.15)}
+    }
+
+    /* ═══════════════════ FAIXA INFERIOR INSTITUCIONAL ═══════════════════ */
+    .footer{
+      height:96px;
+      display:grid;grid-template-columns:repeat(5,1fr);
+      gap:12px;
+      padding:0 34px;
+      position:relative;z-index:90;
+      align-items:center;
+    }
+    .pillar{
+      position:relative;
+      height:78px;
+      border:1px solid rgba(0,229,255,.42);
+      border-radius:10px;
+      background:linear-gradient(180deg, rgba(6,26,54,.92), rgba(2,10,24,.95));
+      box-shadow:
+        inset 0 0 26px rgba(0,229,255,.08),
+        0 0 18px rgba(0,102,255,.12);
+      display:flex;align-items:center;justify-content:center;
+      gap:12px;
+      overflow:hidden;
+      transition:all .3s ease;
+    }
+    .pillar::before{
+      content:"";
+      position:absolute;left:0;right:0;bottom:0;height:2px;
+      background:linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity:.6;
+    }
+    .pillar:hover{
+      border-color:var(--orange);
+      box-shadow:inset 0 0 30px rgba(255,122,0,.12), 0 0 26px rgba(255,122,0,.2);
+      transform:translateY(-3px);
+    }
+    .pillar .icon{
+      width:40px;height:40px;
+      border-radius:50%;
+      display:grid;place-items:center;
+      background:rgba(0,229,255,.1);
+      border:1px solid rgba(0,229,255,.5);
+      box-shadow:0 0 16px rgba(0,229,255,.25);
+      position:relative;z-index:1;
+    }
+    .pillar .ico-line{
+      width:22px;height:22px;
+      stroke:var(--cyan);
+      stroke-width:2;
+      fill:none;
+      filter:drop-shadow(0 0 6px var(--cyan));
+    }
+    .pillar .text{position:relative;z-index:1}
+    .pillar b{
+      display:block;
+      font-size:.92rem;
+      font-weight:800;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      color:#fff;
+    }
+    .pillar span{
+      display:block;
+      font-size:.62rem;
+      color:#8ecfff;
+      opacity:.85;
+      margin-top:2px;
+      letter-spacing:.5px;
+    }
+
+    /* ═══════════════════ RESPONSIVO ═══════════════════ */
+    @media(max-width:1100px){
+      .pillar b{font-size:.78rem}
+      .pillar span{font-size:.55rem}
+    }
+    @media(max-width:900px){
+      .app{padding:12px;grid-template-rows:58px minmax(0,1fr) 66px;gap:6px}
+      .frame{inset:12px;border-radius:14px}
+      .corner{width:44px;height:44px}
+      .corner::before{width:22px}
+      .corner::after{height:22px}
+      .wire{display:none}
+      .data-dot{display:none}
+      .topbar{height:58px;padding:0 18px}
+      .brand-left{font-size:.75rem}
+      .brand-left .tagline{display:none}
+      .brand-left .sep{display:none}
+      .brand-right{padding:4px 10px}
+      .brand-right .logo-big{font-size:1.15rem}
+      .brand-right .sub{font-size:.5rem}
+      .stage{margin:0 8px}
+      .nav{width:36px;height:36px;font-size:22px}
+      .prevBtn{left:16px}.nextBtn{right:16px}
+      .dots{bottom:82px;gap:6px;padding:5px 10px}
+      .dot{width:8px;height:8px}
+      .dot.active{width:20px}
+      .progress-bar{bottom:76px;width:140px}
+      .hex-row{display:none}
+      .footer{height:66px;padding:0 10px;gap:4px}
+      .pillar{height:50px;gap:4px}
+      .pillar .icon{width:28px;height:28px}
+      .pillar .ico-line{width:16px;height:16px}
+      .pillar .text{text-align:center}
+      .pillar b{font-size:.48rem}
+      .pillar span{display:none}
+    }
+    @media(max-width:500px){
+      .brand-right .logo-big{font-size:.9rem}
+      .pillar .icon{width:22px;height:22px}
+      .pillar .ico-line{width:13px;height:13px}
+      .pillar b{font-size:.38rem}
+      .brand-left .senai,.brand-left .hub{font-size:.7rem}
+    }
   </style>
 </head>
 <body>
+  <div class="grid"></div>
+  <div class="circuit-bg"></div>
+  <div class="holo one"></div>
+  <div class="holo two"></div>
+
+  <!-- Moldura futurista -->
+  <div class="frame">
+    <div class="corner tl"></div>
+    <div class="corner tr"></div>
+    <div class="corner bl"></div>
+    <div class="corner br"></div>
+  </div>
+  <div class="wire top-left"></div>
+  <div class="wire top-right"></div>
+  <div class="wire bottom-left"></div>
+  <div class="wire bottom-right"></div>
+  <div class="data-dot a"></div>
+  <div class="data-dot b"></div>
+  <div class="data-dot c"></div>
+  <div class="data-dot d"></div>
+  <div class="scanline"></div>
+
   <main class="app">
+    <!-- Topbar -->
     <header class="topbar">
-      <div class="brandline"><strong>SENAI HUB</strong><span class="hide">Inovação e Tecnologia</span></div>
-      <div class="logoBox"><img src="assets/senai-hub-logo.png" alt="SENAI Hub"></div>
+      <div class="brand-left">
+        <span class="senai">SENAI</span>
+        <span class="hub">HUB</span>
+        <span class="sep"></span>
+        <span class="tagline">Inovação e Tecnologia</span>
+      </div>
+      <div class="brand-right">
+        <div class="logo-big">
+          <span class="senai">SENAI</span><span class="hub">HUB</span>
+        </div>
+        <div class="sub">Inovação e Tecnologia</div>
+      </div>
     </header>
 
-    <section class="stage" aria-label="Vitrine automática de cursos SENAI Hub">
+    <!-- Carrossel -->
+    <section class="stage" aria-label="Vitrine de cursos SENAI HUB">
       <button class="nav prevBtn" aria-label="Anterior">‹</button>
       <button class="nav nextBtn" aria-label="Próximo">›</button>
 
-      <article class="slide active"><img src="assets/manutencao-eletrica.png" alt="Manutenção Elétrica"></article>
-      <article class="slide"><img src="assets/acionamentos-eletricos.png" alt="Acionamentos Elétricos"></article>
-      <article class="slide"><img src="assets/clp-siemens.png" alt="CLP Siemens"></article>
-      <article class="slide"><img src="assets/ihm-siemens.png" alt="IHM Siemens"></article>
-      <article class="slide"><img src="assets/comandos-eletricos.png" alt="Comandos Elétricos"></article>
-      <article class="slide"><img src="assets/redes-industriais.png" alt="Redes Industriais"></article>
+      <article class="slide active"><img src="assets/manutencao-eletrica.png"      alt="Manutenção Elétrica"></article>
+      <article class="slide"><img src="assets/acionamentos-eletricos.png"  alt="Acionamentos Elétricos"></article>
+      <article class="slide"><img src="assets/clp-siemens.png"             alt="CLP Siemens"></article>
+      <article class="slide"><img src="assets/ihm-siemens.png"             alt="IHM Siemens"></article>
+      <article class="slide"><img src="assets/comandos-eletricos.png"      alt="Comandos Elétricos"></article>
+      <article class="slide"><img src="assets/redes-industriais.png"       alt="Redes Industriais"></article>
       <article class="slide"><img src="assets/seguranca-maquinas-nr12.png" alt="Segurança de Máquinas NR-12"></article>
       <article class="slide"><img src="assets/industria-4-0-factoryio.png" alt="Indústria 4.0 e Factory I/O"></article>
-      <article class="slide"><img src="assets/iot-industrial-lorawan.png" alt="IoT Industrial e LoRaWAN"></article>
-      <article class="slide"><img src="assets/energias-renovaveis.png" alt="Energias Renováveis"></article>
-      <article class="slide"><img src="assets/fotovoltaico.png" alt="Energia Fotovoltaica"></article>
+      <article class="slide"><img src="assets/iot-industrial-lorawan.png"  alt="IoT Industrial e LoRaWAN"></article>
+      <article class="slide"><img src="assets/energias-renovaveis.png"     alt="Energias Renováveis"></article>
+      <article class="slide"><img src="assets/fotovoltaico.png"            alt="Energia Fotovoltaica"></article>
 
       <div class="dots" aria-hidden="true"></div>
-      <div class="progress"></div>
+      <div class="progress-bar"><div class="progress-fill"></div></div>
+      <div class="hex-row">
+        <div class="hex"></div>
+        <div class="hex"></div>
+        <div class="hex"></div>
+        <div class="hex"></div>
+        <div class="hex"></div>
+      </div>
     </section>
 
+    <!-- Faixa institucional -->
     <footer class="footer">
-      <div class="pill"><div class="ico">🧠</div><div><b>Inovação</b><span>que transforma</span></div></div>
-      <div class="pill"><div class="ico">🌐</div><div><b>Tecnologia</b><span>que conecta</span></div></div>
-      <div class="pill"><div class="ico">📈</div><div><b>Educação</b><span>que desenvolve</span></div></div>
-      <div class="pill"><div class="ico">🛡</div><div><b>Segurança</b><span>que garante</span></div></div>
-      <div class="pill"><div class="ico">🎯</div><div><b>Futuro</b><span>que construímos</span></div></div>
+      <div class="pillar">
+        <div class="icon">
+          <svg class="ico-line" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 3.5-2 6.5-5 8.5V22H10v-4.5c-3-2-5-5-5-8.5a7 7 0 0 1 7-7z"/><path d="M12 6v6M9 9h6"/></svg>
+        </div>
+        <div class="text"><b>Inovação</b><span>que transforma</span></div>
+      </div>
+      <div class="pillar">
+        <div class="icon">
+          <svg class="ico-line" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </div>
+        <div class="text"><b>Tecnologia</b><span>que conecta</span></div>
+      </div>
+      <div class="pillar">
+        <div class="icon">
+          <svg class="ico-line" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 5-5"/></svg>
+        </div>
+        <div class="text"><b>Educação</b><span>que desenvolve</span></div>
+      </div>
+      <div class="pillar">
+        <div class="icon">
+          <svg class="ico-line" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <div class="text"><b>Segurança</b><span>que garante</span></div>
+      </div>
+      <div class="pillar">
+        <div class="icon">
+          <svg class="ico-line" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="text"><b>Futuro</b><span>que construímos</span></div>
+      </div>
     </footer>
   </main>
 
@@ -99,6 +565,7 @@
     const dotsBox = document.querySelector('.dots');
     const prevBtn = document.querySelector('.prevBtn');
     const nextBtn = document.querySelector('.nextBtn');
+    const progressFill = document.querySelector('.progress-fill');
     let current = 0;
     let timer;
 
@@ -108,7 +575,6 @@
       dot.addEventListener('click', () => goTo(i));
       dotsBox.appendChild(dot);
     });
-
     const dots = [...document.querySelectorAll('.dot')];
 
     function render(){
@@ -116,17 +582,34 @@
       dots.forEach(d => d.classList.remove('active'));
       slides[current].classList.add('active');
       dots[current].classList.add('active');
-      const progress = document.querySelector('.progress');
-      progress.style.animation = 'none';
-      void progress.offsetWidth;
-      progress.style.animation = 'progress 6s linear infinite';
+
+      progressFill.style.animation = 'none';
+      void progressFill.offsetWidth;
+      progressFill.style.animation = 'progress 6s linear infinite';
     }
-    function goTo(i){current = (i + slides.length) % slides.length; render(); restart();}
-    function next(){goTo(current + 1)}
-    function prev(){goTo(current - 1)}
-    function restart(){clearInterval(timer); timer = setInterval(next, 6000)}
+
+    function goTo(i){
+      current = (i + slides.length) % slides.length;
+      render();
+      restart();
+    }
+
+    function next(){ goTo(current + 1); }
+    function prev(){ goTo(current - 1); }
+
+    function restart(){
+      clearInterval(timer);
+      timer = setInterval(next, 6000);
+    }
+
     prevBtn.addEventListener('click', prev);
     nextBtn.addEventListener('click', next);
+
+    document.addEventListener('keydown', e => {
+      if(e.key === 'ArrowLeft') prev();
+      if(e.key === 'ArrowRight') next();
+    });
+
     restart();
   </script>
 </body>
